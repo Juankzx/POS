@@ -12,7 +12,7 @@ class ArticuloController extends Controller
      */
     public function index()
     {
-        return ["Articulos"];
+        return Articulo::with(['Marca','Medida','Categoria'])->where('estado',1)->get();
     }
 
     /**
@@ -20,7 +20,17 @@ class ArticuloController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $articulo = new Articulo();
+        $articulo->nombre = $request->nombre;
+        $articulo->barra = $request->barra;
+        $articulo->medida_id = $request->medida_id;
+        $articulo->marca_id = $request->marca_id;
+        $articulo->categoria_id = $request->categoria_id;
+        $articulo->compra = $request->compra;
+        $articulo->venta = $request->venta;
+        $articulo->stock_minimo = $request->stock_minimo;
+        $articulo->save();
+        return $articulo;
     }
 
     /**
@@ -28,7 +38,10 @@ class ArticuloController extends Controller
      */
     public function show(Articulo $articulo)
     {
-        //
+        $articulo->marca = $articulo->Marca;
+        $articulo->medida = $articulo->Medida;
+        $articulo->categoria = $articulo->Categoria;
+        return $articulo;
     }
 
     /**
@@ -36,7 +49,16 @@ class ArticuloController extends Controller
      */
     public function update(Request $request, Articulo $articulo)
     {
-        //
+        $articulo->nombre = $request->nombre;
+        $articulo->barra = $request->barra;
+        $articulo->medida_id = $request->medida_id;
+        $articulo->marca_id = $request->marca_id;
+        $articulo->categoria_id = $request->categoria_id;
+        $articulo->compra = $request->compra;
+        $articulo->venta = $request->venta;
+        $articulo->stock_minimo = $request->stock_minimo;
+        $articulo->save();
+        return $articulo;
     }
 
     /**
@@ -44,6 +66,8 @@ class ArticuloController extends Controller
      */
     public function destroy(Articulo $articulo)
     {
-        //
+        $articulo -> estado = 0;
+        $articulo->save();
+        
     }
 }
