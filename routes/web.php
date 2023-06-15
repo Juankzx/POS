@@ -12,6 +12,13 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::group(['prefix'=>'api'],function(){
+Route::apiResource('/marcas', 'MarcaController');
+Route::apiResource('/medidas', 'MedidaController');
+Route::apiResource('/categorias', 'CategoriaController');
+Route::apiResource('/documentos', 'DocumentoController');
+Route::apiResource('/articulos', 'ArticuloController');
+});
 
 Route::get('/', function () {
     return view('welcome');
