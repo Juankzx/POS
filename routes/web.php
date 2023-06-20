@@ -18,6 +18,10 @@ Route::apiResource('/medidas', 'MedidaController');
 Route::apiResource('/categorias', 'CategoriaController');
 Route::apiResource('/documentos', 'DocumentoController');
 Route::apiResource('/articulos', 'ArticuloController');
+Route::get('/inventarios/kardex/{articulo}', 'InventarioController@kardex');
+Route::apiResource('/inventarios', 'InventarioController');
+Route::apiResource('/compras', 'CompraController');
+Route::apiResource('/ventas', 'VentaController');
 });
 
 Route::get('/', function () {
